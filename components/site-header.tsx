@@ -8,7 +8,7 @@ export function SiteHeader() {
       <div className="max-w-[1200px] mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <img
-            src="/no_slogan.3a9b34d085aa4521b91bb2613e4fd19f%20(1).png"
+            src="/download.png"
             alt="Flores logo"
             className="h-12 w-auto"
           />
