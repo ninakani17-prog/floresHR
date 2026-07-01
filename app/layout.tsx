@@ -120,7 +120,7 @@ export const metadata: Metadata = {
     url: CANONICAL_LOGIN_URL,
     images: [
       {
-        url: "/favicon-32x32.png",
+        url: "/download.png",
         width: 32,
         height: 32,
         alt: `${SITE_BRAND}`,
@@ -131,12 +131,12 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Flores - Login",
     description: `${SITE_BRAND} at ${SITE_DOMAIN}. Access your account, manage your health and dependent care benefits, and sign in securely through Flores.`,
-    images: ["/favicon-32x32.png"],
+    images: ["/download.png"],
   },
   icons: {
-    icon: "/favicon-32x32.png",
-    shortcut: "/favicon-32x32.png",
-    apple: "/favicon-32x32.png",
+    icon: "/download.png",
+    shortcut: "/download.png",
+    apple: "/download.png",
   },
   viewport: {
     width: "device-width",
